@@ -144,6 +144,9 @@ GEM
       rouge (>= 2.0, < 5.0)
     jekyll-default-layout (0.1.5)
       jekyll (>= 3.0, < 5.0)
+    jekyll-dice-tray (0.3.1)
+      jekyll (>= 3.7, < 5.0)
+      nokogiri (>= 1.14)
     jekyll-feed (0.17.0)
       jekyll (>= 3.7, < 5.0)
     jekyll-gist (1.5.0)
@@ -151,8 +154,15 @@ GEM
     jekyll-github-metadata (2.16.1)
       jekyll (>= 3.4, < 5.0)
       octokit (>= 4, < 7, != 4.4.0)
+    jekyll-hover-popup (0.3.2)
+      jekyll (>= 3.7, < 5.0)
+    jekyll-image-links (0.1.2)
+      jekyll (>= 3.7, < 5.0)
     jekyll-include-cache (0.2.1)
       jekyll (>= 3.7, < 5.0)
+    jekyll-jtd-toc-nav (0.3.0)
+      jekyll (>= 3.0)
+      nokogiri (>= 1.13)
     jekyll-mentions (1.6.0)
       html-pipeline (~> 2.3)
       jekyll (>= 3.7, < 5.0)
@@ -236,7 +246,7 @@ GEM
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
     liquid (4.0.4)
-    listen (3.10.0)
+    listen (3.10.1)
       logger
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -281,6 +291,8 @@ GEM
       ffi (~> 1.0)
     rexml (3.4.4)
     rouge (3.30.0)
+    rpg-callouts (1.0.0)
+      jekyll (>= 3.8, < 5.0)
     rubyzip (2.4.1)
     safe_yaml (1.0.5)
     sass (3.7.4)
@@ -315,7 +327,12 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages
+  jekyll-dice-tray
+  jekyll-hover-popup
+  jekyll-image-links
+  jekyll-jtd-toc-nav
   just-the-docs
+  rpg-callouts
 
 CHECKSUMS
   activesupport (8.1.4) sha256=891dd3fe43c4fc8391934b237b1189bb1f661c932a84a840043db9d46a4e80df
@@ -359,10 +376,14 @@ CHECKSUMS
   jekyll-commonmark (1.4.0) sha256=1731e658fe09ce040271e6878f83ad45bbf8d17b10ad03bf343546cca30f4844
   jekyll-commonmark-ghpages (0.5.1) sha256=d56722f23393e45625e6e1bac6d3c64bb5f5cdf6ca547338160536d61c27a4a4
   jekyll-default-layout (0.1.5) sha256=c626be4e4a5deafca123539da2cd22ff873be350cafd4da134039efdf24320af
+  jekyll-dice-tray (0.3.1) sha256=15d957c913e2d39a98a8f7783f369a6c88175b9ed0b4634017770af8c5b143da
   jekyll-feed (0.17.0) sha256=689aab16c877949bb9e7a5c436de6278318a51ecb974792232fd94d8b3acfcc3
   jekyll-gist (1.5.0) sha256=495b6483552a3e2975a2752964ea7acddd545bc6e13ce2be15a50cec8d4c9f0f
   jekyll-github-metadata (2.16.1) sha256=4cf29988bdaf24774a7bc07fae71e54424ddfaa2895f742d8fa3036d0db65b4c
+  jekyll-hover-popup (0.3.2) sha256=08dc84ad8ea570db09c494bf77f93a9f4524e562bc34b5dccfa9ea2780acca4e
+  jekyll-image-links (0.1.2) sha256=5bb78843f55bce17e8798df4d220c7288f44291aaa092b1b2aa020836e39f5f8
   jekyll-include-cache (0.2.1) sha256=c7d4b9e551732a27442cb2ce853ba36a2f69c66603694b8c1184c99ab1a1a205
+  jekyll-jtd-toc-nav (0.3.0) sha256=f8c556a292cdbb7be476dcb13c9cc09c5a6c73fb90bbb86412c9670fd6456e03
   jekyll-mentions (1.6.0) sha256=39e801024cb6f2319b3f78a29999d0068ef5f68bc5202b8757d5354fef311ed9
   jekyll-optional-front-matter (0.3.2) sha256=ecdc061d711472469fcf04da617653b553e914c038a17df3b6a5f6f92aeb761b
   jekyll-paginate (1.1.0) sha256=880aadf4b02529a93541d508c5cbb744f014cbfc071d0263a31f25ec9066eb64
@@ -395,7 +416,7 @@ CHECKSUMS
   kramdown (2.4.0) sha256=b62e5bcbd6ea20c7a6730ebbb2a107237856e14f29cebf5b10c876cc1a2481c5
   kramdown-parser-gfm (1.1.0) sha256=fb39745516427d2988543bf01fc4cf0ab1149476382393e0e9c48592f6581729
   liquid (4.0.4) sha256=4fcfebb1a045e47918388dbb7a0925e7c3893e58d2bd6c3b3c73ec17a2d8fdb3
-  listen (3.10.0) sha256=c6e182db62143aeccc2e1960033bebe7445309c7272061979bb098d03760c9d2
+  listen (3.10.1) sha256=4c3f32855657f348747da4dd2372ff3790d90a6b1d3e4f21a3706adb2d04783c
   logger (1.7.0) sha256=196edec7cc44b66cfb40f9755ce11b392f21f7967696af15d274dde7edff0203
   mercenary (0.3.6) sha256=2a084b18f5692c86a633e185d5311ba6d11fc46c802eb414ae05368178078a82
   minima (2.5.1) sha256=520e52bc631fb16cbb8100660f6caa44f97859e2fa7e397d508deb18739567be
@@ -419,6 +440,7 @@ CHECKSUMS
   rb-inotify (0.11.1) sha256=a0a700441239b0ff18eb65e3866236cd78613d6b9f78fea1f9ac47a85e47be6e
   rexml (3.4.4) sha256=19e0a2c3425dfbf2d4fc1189747bdb2f849b6c5e74180401b15734bc97b5d142
   rouge (3.30.0) sha256=a3d353222aa72e49e2c86726c0bcfd719f82592f57d494474655f48e669eceb6
+  rpg-callouts (1.0.0) sha256=6ceee46acfe24263a3338334f3b384c77c51fdf676c81f23bcaff779fd2fdc16
   rubyzip (2.4.1) sha256=8577c88edc1fde8935eb91064c5cb1aef9ad5494b940cf19c775ee833e075615
   safe_yaml (1.0.5) sha256=a6ac2d64b7eb027bdeeca1851fe7e7af0d668e133e8a88066a0c6f7087d9f848
   sass (3.7.4) sha256=808b0d39053aa69068df939e24671fe84fd5a9d3314486e1a1457d0934a4255d

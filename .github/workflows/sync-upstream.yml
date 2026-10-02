@@ -1,10 +1,30 @@
 name: Sync from upstream
 
+# --- customize these for other repos ---
+env:
+  UPSTREAM_REPO: https://github.com/yochaigal/cairn.git
+  UPSTREAM_BRANCH: main
+  TARGET_BRANCH: just-the-games-cairn
+# ---------------------------------------
+
 on:
   schedule:
     # Daily at 12:00 UTC
     - cron: "0 12 * * *"
   workflow_dispatch:
+    inputs:
+      upstream_repo:
+        description: "Upstream repo URL (leave blank to use default)"
+        required: false
+        type: string
+      upstream_branch:
+        description: "Upstream branch (leave blank to use default)"
+        required: false
+        type: string
+      target_branch:
+        description: "Branch to update (leave blank to use default)"
+        required: false
+        type: string
 
 permissions:
   contents: write
@@ -17,32 +37,43 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
+      - name: Resolve settings
+        id: settings
+        run: |
+          # Manual runs can override via workflow_dispatch inputs; schedule uses env defaults.
+          echo "upstream_repo=${{ github.event.inputs.upstream_repo || env.UPSTREAM_REPO }}" >> "$GITHUB_OUTPUT"
+          echo "upstream_branch=${{ github.event.inputs.upstream_branch || env.UPSTREAM_BRANCH }}" >> "$GITHUB_OUTPUT"
+          echo "target_branch=${{ github.event.inputs.target_branch || env.TARGET_BRANCH }}" >> "$GITHUB_OUTPUT"
+
       - name: Checkout target branch
         uses: actions/checkout@v4
         with:
-          ref: just-the-games-cairn
+          ref: ${{ steps.settings.outputs.target_branch }}
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Add upstream remote
         run: |
-          git remote add upstream https://github.com/yochaigal/cairn.git
-          git fetch upstream main
+          git remote add upstream "${{ steps.settings.outputs.upstream_repo }}"
+          git fetch upstream "${{ steps.settings.outputs.upstream_branch }}"
 
-      - name: Merge upstream/main
+      - name: Merge upstream into target
         run: |
+          UPSTREAM_REF="upstream/${{ steps.settings.outputs.upstream_branch }}"
+          TARGET_BRANCH="${{ steps.settings.outputs.target_branch }}"
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          if git merge-base --is-ancestor upstream/main HEAD; then
-            echo "Already up to date with upstream/main."
+          if git merge-base --is-ancestor "$UPSTREAM_REF" HEAD; then
+            echo "Already up to date with $UPSTREAM_REF."
             exit 0
           fi
 
-          if ! git merge --no-edit upstream/main; then
-            echo "::error::Merge conflict while syncing upstream/main into just-the-games-cairn. Resolve locally and push."
+          if ! git merge --no-edit "$UPSTREAM_REF"; then
+            echo "::error::Merge conflict while syncing $UPSTREAM_REF into $TARGET_BRANCH. Resolve locally and push."
             git merge --abort || true
             exit 1
           fi
 
-          git push origin HEAD:just-the-games-cairn
+          git push origin "HEAD:$TARGET_BRANCH"

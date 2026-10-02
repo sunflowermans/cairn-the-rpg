@@ -16,6 +16,16 @@ plugins:
 include:
   - js
 
+callouts:
+  note:
+    title: Note
+    color: yellow
+
+# Aux links for the upper right navigation
+aux_links:
+  "Return to Just The Games":
+    - "https://games.puzzledungeon.com/"
+
 search:
   # Split pages into sections that can be searched individually
   # Supports 1 - 6, default: 2
@@ -37,10 +47,11 @@ search:
 back_to_top: true
 back_to_top_text: "Back to top"
 
-footer_content: "The text on this page is licensed under <a href=\"https://creativecommons.org/licenses/by-sa/4.0\">CC-BY-SA 4.0.</a>"
+footer_content: "Cairn RPG was written by Yochai Gal. The Cairn RPG text is licensed under <a href=\"https://creativecommons.org/licenses/by-sa/4.0\">CC-BY-SA 4.0.</a> This site is just a fork of the actual <a href=\"https://cairnrpg.com\">Cairn SRD</a>."
 # Footer last edited timestamp
 last_edit_timestamp: true # show or hide edit time - page must have `last_modified_date` defined in the frontmatter
 last_edit_time_format: "%b %e %Y at %I:%M %p" # uses ruby's time format: https://ruby-doc.org/stdlib-2.7.0/libdoc/time/rdoc/Time.html
 
 # If you want to ignore the monsters folder during builds
-# exclude: /resources/monsters
+#exclude: /resources/monsters
+

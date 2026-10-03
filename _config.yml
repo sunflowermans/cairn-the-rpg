@@ -19,7 +19,7 @@ include:
 callouts:
   note:
     title: Note
-    color: yellow
+    color: puke
 
 # Aux links for the upper right navigation
 aux_links:

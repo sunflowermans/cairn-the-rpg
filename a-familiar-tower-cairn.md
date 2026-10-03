@@ -15,6 +15,8 @@ ESCAPE ROOM ROLEPLAYING ADVENTURE FOR THIRD-LEVEL CHARACTERS
 
 Requires *[Cairn](/barebones/rules/)* to play.
 
+[OSE version](https://games.puzzledungeon.com/docs/a-familiar-tower){: .btn .btn-purple }
+
 © 2026 Directsun Games
 
 Version 1.1

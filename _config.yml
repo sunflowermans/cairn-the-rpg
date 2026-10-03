@@ -26,6 +26,11 @@ aux_links:
   "Return to Just The Games":
     - "https://games.puzzledungeon.com/"
 
+# External navigation links
+nav_external_links:
+  - title: OSE Rules
+    url: https://games.puzzledungeon.com
+
 search:
   # Split pages into sections that can be searched individually
   # Supports 1 - 6, default: 2

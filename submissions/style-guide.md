@@ -22,8 +22,7 @@ Relics utilize the following template:
 - **Recharge**: How does it recharge (if applicable)
 ```
 
-## Monsters (in an adventure conversion)
-- If an ability score is 10, you may omit it if you choose.
+## Monsters
 - Note the _numbers_ appearing **before** the stats (e.g. 2 HP, 1 Armor)
 - The standard monster format is as follows:
 

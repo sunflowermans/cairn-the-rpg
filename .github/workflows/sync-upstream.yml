@@ -4,7 +4,7 @@ name: Sync from upstream
 env:
   UPSTREAM_REPO: https://github.com/yochaigal/cairn.git
   UPSTREAM_BRANCH: main
-  TARGET_BRANCH: just-the-games-cairn
+  TARGET_BRANCH: main
 # ---------------------------------------
 
 on:

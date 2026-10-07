@@ -1,6 +1,7 @@
 ---
 title: 😼 A Familiar Tower (Cairn)
 description: When the wizard's away, the cat will play...
+layout: default
 nav_order: 999
 ---
 The following adventure is available from...

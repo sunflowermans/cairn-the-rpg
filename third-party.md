@@ -1,9 +1,8 @@
 ---
 layout: default
 title: Third Party
-parent: Hacks
-nav_order: 10
 has_children: true
+nav_order: 16
 ---
 
 # Third Party
